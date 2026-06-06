@@ -1,216 +1,93 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>FlowData Command Center</title>
-
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlowData Command Center</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
-  <!-- BOOT SCREEN -->
-  <div id="boot-screen">
-    <div class="boot-container">
-      <h1>FLOWDATA COMMAND CENTER™</h1>
-
-      <div class="terminal">
-        <p id="line1"></p>
-        <p id="line2"></p>
-        <p id="line3"></p>
-        <p id="line4"></p>
-      </div>
-
-      <div class="progress-container">
-        <div class="progress-bar" id="progress-bar"></div>
-      </div>
+<div id="boot-screen">
+  <div class="boot-container">
+    <h1>FLOWDATA COMMAND CENTER™</h1>
+    <div class="terminal">
+      <p id="line1"></p><p id="line2"></p><p id="line3"></p><p id="line4"></p>
     </div>
+    <div class="progress-container"><div class="progress-bar" id="progress-bar"></div></div>
   </div>
+</div>
 
-  <!-- SITE -->
-  <div id="main-site">
+<div id="main-site">
+<canvas id="particles"></canvas>
 
-    <canvas id="particles"></canvas>
+<header>
+<div class="logo">FLOWDATA<span>.</span></div>
+<nav>
+<a href="#core">Projetos</a>
+<a href="#processo">Processo</a>
+<a href="#stats">Resultados</a>
+<a href="#contato">Contato</a>
+</nav>
+</header>
 
-    <header>
-      <div class="logo">FLOWDATA<span>.</span></div>
+<section class="hero">
+<div>
+<div class="badge">DIGITAL INTELLIGENCE PLATFORM</div>
+<h1>DESENVOLVEMOS <span>EXPERIÊNCIAS DIGITAIS</span> QUE VENDEM POR VOCÊ</h1>
+<p>Sites, Landing Pages e soluções digitais criadas para transformar visitantes em clientes.</p>
+<div class="hero-buttons">
+<a href="#core" class="btn-primary">VER PROJETOS</a>
+<a href="https://wa.me/5545991374312" class="btn-secondary">WHATSAPP</a>
+</div>
+</div>
 
-      <nav>
-        <a href="#scanner">Scanner</a>
-        <a href="#core">Projetos</a>
-        <a href="#diagnostico">Diagnóstico</a>
-        <a href="#contato">Contato</a>
-      </nav>
-    </header>
+<div class="hud-card">
+<div class="hud-header">SYSTEM STATUS</div>
+<div class="hud-item"><span>Projetos</span><strong>3+</strong></div>
+<div class="hud-item"><span>Online</span><strong>100%</strong></div>
+<div class="hud-item"><span>Leads</span><strong id="counter">0</strong></div>
+</div>
+</section>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-left">
-        <div class="badge">DIGITAL INTELLIGENCE PLATFORM</div>
+<section id="core">
+<h2 class="section-title">PROJETOS FLOWDATA</h2>
+<div class="project-showcase">
+<div class="project-card"><h3>Advocacia Prime</h3><p>Site jurídico premium.</p><a target="_blank" href="https://cliente-advocacia-prime-ihy9glcab-data-flow-s-projects.vercel.app/">Abrir</a></div>
+<div class="project-card"><h3>Prime Imóveis</h3><p>Landing page imobiliária.</p><a target="_blank" href="https://cliente-prime-imoveis.vercel.app/">Abrir</a></div>
+<div class="project-card"><h3>Instituto Vitae</h3><p>Projeto para área da saúde.</p><a target="_blank" href="https://cliente-instituto-vitae.vercel.app/">Abrir</a></div>
+</div>
+</section>
 
-        <h1>
-          O FUTURO DOS NEGÓCIOS
-          <span>É OPERADO POR DADOS</span>
-        </h1>
+<section id="processo">
+<h2 class="section-title">PROCESSO FLOWDATA</h2>
+<div class="timeline">
+<div class="step"><h3>01 Briefing</h3></div>
+<div class="step"><h3>02 Design</h3></div>
+<div class="step"><h3>03 Desenvolvimento</h3></div>
+<div class="step"><h3>04 Publicação</h3></div>
+</div>
+</section>
 
-        <p>
-          A FlowData cria sites, landing pages, automações e experiências digitais
-          para empresas que querem vender mais, parecer profissionais e operar com inteligência.
-        </p>
+<section id="stats">
+<h2 class="section-title">RESULTADOS</h2>
+<div class="stats-grid">
+<div class="stat-card"><strong>3+</strong><span>Projetos</span></div>
+<div class="stat-card"><strong>100%</strong><span>Responsivos</span></div>
+<div class="stat-card"><strong>24h</strong><span>Suporte</span></div>
+<div class="stat-card"><strong>100%</strong><span>Online</span></div>
+</div>
+</section>
 
-        <div class="hero-buttons">
-          <a href="#core" class="btn-primary">VER PROJETOS</a>
-          <a href="https://wa.me/5545991374312?text=Olá,%20quero%20conhecer%20as%20soluções%20da%20FlowData" class="btn-secondary" target="_blank">
-            FALAR COM A FLOWDATA
-          </a>
-        </div>
-      </div>
+<section id="contato">
+<div class="contact-box">
+<h2>SEU PRÓXIMO CLIENTE PODE ESTAR A UM CLIQUE.</h2>
+<a class="btn-primary" href="https://wa.me/5545991374312">FALAR NO WHATSAPP</a>
+</div>
+</section>
 
-      <div class="hero-right">
-        <div class="hud-card">
-          <div class="hud-header">SYSTEM STATUS</div>
-
-          <div class="hud-item">
-            <span>Automações</span>
-            <strong>ONLINE</strong>
-          </div>
-
-          <div class="hud-item">
-            <span>Dashboards</span>
-            <strong>ATIVOS</strong>
-          </div>
-
-          <div class="hud-item">
-            <span>Leads Gerados</span>
-            <strong id="counter">0</strong>
-          </div>
-
-          <div class="hud-item">
-            <span>Conversão Digital</span>
-            <strong>87%</strong>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SCANNER -->
-    <section id="scanner">
-      <div class="section-title">SCANNER EMPRESARIAL</div>
-
-      <div class="scanner-grid">
-        <div class="scan-box">
-          <h3>Presença Digital</h3>
-          <div class="bar"><div class="fill fill1"></div></div>
-          <span>78%</span>
-        </div>
-
-        <div class="scan-box">
-          <h3>Automação</h3>
-          <div class="bar"><div class="fill fill2"></div></div>
-          <span>32%</span>
-        </div>
-
-        <div class="scan-box">
-          <h3>Captação</h3>
-          <div class="bar"><div class="fill fill3"></div></div>
-          <span>54%</span>
-        </div>
-
-        <div class="scan-box">
-          <h3>Eficiência</h3>
-          <div class="bar"><div class="fill fill4"></div></div>
-          <span>89%</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJETOS -->
-    <section id="core">
-      <div class="section-title">PROJETOS REAIS FLOWDATA</div>
-
-      <div class="project-showcase">
-
-        <div class="project-card featured">
-          <span>01</span>
-          <h3>Advocacia Prime</h3>
-          <p>
-            Site institucional premium para escritório jurídico, com foco em autoridade,
-            confiança e captação de clientes.
-          </p>
-          <a href="https://cliente-advocacia-prime-ihy9glcab-data-flow-s-projects.vercel.app/" target="_blank">
-            Visualizar projeto
-          </a>
-        </div>
-
-        <div class="project-card">
-          <span>02</span>
-          <h3>Prime Imóveis</h3>
-          <p>
-            Landing page imobiliária com visual sofisticado para gerar interesse
-            e direcionar clientes ao atendimento.
-          </p>
-          <a href="https://cliente-prime-imoveis.vercel.app/" target="_blank">
-            Visualizar projeto
-          </a>
-        </div>
-
-        <div class="project-card">
-          <span>03</span>
-          <h3>Instituto Vitae</h3>
-          <p>
-            Presença digital moderna para saúde, atendimento humanizado
-            e fortalecimento da imagem profissional.
-          </p>
-          <a href="https://cliente-instituto-vitae.vercel.app/" target="_blank">
-            Visualizar projeto
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- DIAGNÓSTICO -->
-    <section id="diagnostico">
-      <div class="section-title">DIAGNÓSTICO DIGITAL</div>
-
-      <div class="diagnostic-box">
-        <input type="text" id="segmento" placeholder="Digite o segmento da empresa. Ex: clínica, imobiliária, ótica..." />
-
-        <button onclick="analisarSegmento()">ANALISAR OPORTUNIDADES</button>
-
-        <div id="resultado"></div>
-      </div>
-    </section>
-
-    <!-- CONTATO -->
-    <section id="contato">
-      <div class="contact-box">
-        <h2>PRONTO PARA EVOLUIR?</h2>
-
-        <p>
-          Transforme sua presença digital em uma operação mais profissional,
-          estratégica e preparada para captar clientes.
-        </p>
-
-        <a
-          href="https://wa.me/5545991374312?text=Olá,%20quero%20conhecer%20as%20soluções%20da%20FlowData"
-          class="btn-primary"
-          target="_blank"
-        >
-          FALAR AGORA NO WHATSAPP
-        </a>
-      </div>
-    </section>
-
-    <footer>
-      <p>© 2026 FlowData — Command Center Digital.</p>
-    </footer>
-
-  </div>
-
-  <script src="script.js"></script>
+<footer><h3>FLOWDATA COMMAND CENTER™</h3></footer>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
