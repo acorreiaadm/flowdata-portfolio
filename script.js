@@ -1,19 +1,94 @@
-// Partículas no fundo
+// BOOT SCREEN
+const bootScreen = document.getElementById("boot-screen");
+const mainSite = document.getElementById("main-site");
+const progressBar = document.getElementById("progress-bar");
+
+const lines = [
+  "Inicializando sistema FlowData...",
+  "Conectando módulos de inteligência...",
+  "Carregando automações digitais...",
+  "Sistema operacional pronto."
+];
+
+function typeLine(elementId, text, delay) {
+  setTimeout(() => {
+    const element = document.getElementById(elementId);
+    let i = 0;
+
+    const typing = setInterval(() => {
+      element.textContent += text.charAt(i);
+      i++;
+
+      if (i >= text.length) {
+        clearInterval(typing);
+      }
+    }, 35);
+  }, delay);
+}
+
+typeLine("line1", lines[0], 300);
+typeLine("line2", lines[1], 1200);
+typeLine("line3", lines[2], 2200);
+typeLine("line4", lines[3], 3200);
+
+let progress = 0;
+
+const loading = setInterval(() => {
+  progress += 4;
+  progressBar.style.width = progress + "%";
+
+  if (progress >= 100) {
+    clearInterval(loading);
+
+    setTimeout(() => {
+      bootScreen.style.opacity = "0";
+      bootScreen.style.transition = "0.8s";
+
+      setTimeout(() => {
+        bootScreen.style.display = "none";
+        mainSite.style.display = "block";
+        startCounter();
+      }, 800);
+    }, 500);
+  }
+}, 120);
+
+// CONTADOR HUD
+function startCounter() {
+  const counter = document.getElementById("counter");
+  let value = 0;
+
+  const interval = setInterval(() => {
+    value += 9;
+    counter.textContent = value;
+
+    if (value >= 427) {
+      counter.textContent = "427+";
+      clearInterval(interval);
+    }
+  }, 30);
+}
+
+// PARTÍCULAS
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
 let particles = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+resizeCanvas();
 
 class Particle {
   constructor() {
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 2 + 1;
-    this.speedX = Math.random() * 1 - 0.5;
-    this.speedY = Math.random() * 1 - 0.5;
+    this.size = Math.random() * 2 + 0.5;
+    this.speedX = Math.random() * 0.6 - 0.3;
+    this.speedY = Math.random() * 0.6 - 0.3;
   }
 
   update() {
@@ -25,16 +100,17 @@ class Particle {
   }
 
   draw() {
-    ctx.fillStyle = "rgba(255, 0, 0, 0.8)";
+    ctx.fillStyle = "rgba(0, 229, 255, 0.75)";
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
   }
 }
 
-function initParticles() {
+function createParticles() {
   particles = [];
-  for (let i = 0; i < 90; i++) {
+
+  for (let i = 0; i < 85; i++) {
     particles.push(new Particle());
   }
 }
@@ -46,9 +122,9 @@ function connectParticles() {
       const dy = particles[a].y - particles[b].y;
       const distance = Math.sqrt(dx * dx + dy * dy);
 
-      if (distance < 120) {
-        ctx.strokeStyle = `rgba(255, 0, 0, ${1 - distance / 120})`;
-        ctx.lineWidth = 0.5;
+      if (distance < 130) {
+        ctx.strokeStyle = `rgba(255, 0, 60, ${1 - distance / 130})`;
+        ctx.lineWidth = 0.4;
         ctx.beginPath();
         ctx.moveTo(particles[a].x, particles[a].y);
         ctx.lineTo(particles[b].x, particles[b].y);
@@ -70,51 +146,42 @@ function animateParticles() {
   requestAnimationFrame(animateParticles);
 }
 
-initParticles();
+createParticles();
 animateParticles();
 
 window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  initParticles();
+  resizeCanvas();
+  createParticles();
 });
 
-// Contador animado
-let contador = document.getElementById("contador");
-let valor = 0;
+// IA DE DIAGNÓSTICO
+function analisarSegmento() {
+  const segmento = document.getElementById("segmento").value.trim();
+  const resultado = document.getElementById("resultado");
 
-const intervalo = setInterval(() => {
-  valor += 7;
-  contador.textContent = valor;
-
-  if (valor >= 427) {
-    contador.textContent = "427+";
-    clearInterval(intervalo);
+  if (segmento === "") {
+    resultado.innerHTML = "Digite um segmento para iniciar a análise.";
+    return;
   }
-}, 35);
 
-// Interação do formulário
-const formulario = document.getElementById("formulario");
-const mensagem = document.getElementById("mensagem");
+  resultado.innerHTML = `
+    <strong>ANÁLISE CONCLUÍDA PARA: ${segmento.toUpperCase()}</strong><br><br>
+    ✓ Site profissional de alta conversão<br>
+    ✓ Landing page estratégica<br>
+    ✓ WhatsApp direcionado para atendimento<br>
+    ✓ Google Business otimizado<br>
+    ✓ Dashboard de acompanhamento<br>
+    ✓ Automação para captação de clientes
+  `;
+}
 
-formulario.addEventListener("submit", function (event) {
-  event.preventDefault();
+// EFEITO DE MOUSE NO FUNDO
+document.addEventListener("mousemove", (event) => {
+  const x = event.clientX / window.innerWidth;
+  const y = event.clientY / window.innerHeight;
 
-  const nome = document.getElementById("nome").value;
-
-  mensagem.textContent = `Obrigada, ${nome}! A FlowData recebeu seu interesse.`;
-  mensagem.style.marginTop = "25px";
-  mensagem.style.color = "#ff4d4d";
-  mensagem.style.fontWeight = "700";
-
-  formulario.reset();
-});
-
-// Efeito nos projetos
-const projetos = document.querySelectorAll(".projeto");
-
-projetos.forEach((projeto) => {
-  projeto.addEventListener("click", () => {
-    projeto.classList.toggle("ativo");
-  });
+  document.body.style.background = `
+    radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255,0,60,.16), transparent 25%),
+    #030305
+  `;
 });
