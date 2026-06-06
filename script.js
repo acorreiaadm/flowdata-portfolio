@@ -110,7 +110,9 @@ class Particle {
 function createParticles() {
   particles = [];
 
-  for (let i = 0; i < 85; i++) {
+  const quantity = window.innerWidth < 650 ? 35 : 85;
+
+  for (let i = 0; i < quantity; i++) {
     particles.push(new Particle());
   }
 }
@@ -154,7 +156,7 @@ window.addEventListener("resize", () => {
   createParticles();
 });
 
-// IA DE DIAGNÓSTICO
+// DIAGNÓSTICO DIGITAL
 function analisarSegmento() {
   const segmento = document.getElementById("segmento").value.trim();
   const resultado = document.getElementById("resultado");
@@ -175,8 +177,10 @@ function analisarSegmento() {
   `;
 }
 
-// EFEITO DE MOUSE NO FUNDO
+// FUNDO RESPONDE AO MOUSE
 document.addEventListener("mousemove", (event) => {
+  if (window.innerWidth < 650) return;
+
   const x = event.clientX / window.innerWidth;
   const y = event.clientY / window.innerHeight;
 
