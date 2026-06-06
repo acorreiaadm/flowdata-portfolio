@@ -1,352 +1,316 @@
-// =======================
+// ======================
 // BOOT SCREEN
-// =======================
+// ======================
 
 const bootScreen = document.getElementById("boot-screen");
 const mainSite = document.getElementById("main-site");
 const progressBar = document.getElementById("progress-bar");
 
-const lines = [
-  "Inicializando sistema FlowData...",
-  "Conectando módulos inteligentes...",
-  "Carregando projetos digitais...",
+const mensagens = [
+  "Inicializando FlowData...",
+  "Carregando módulos inteligentes...",
+  "Conectando projetos...",
   "Sistema operacional pronto."
 ];
 
-function typeLine(id, text, delay) {
+function escreverLinha(id, texto, delay) {
+
   setTimeout(() => {
 
-    const element = document.getElementById(id);
+    const elemento = document.getElementById(id);
+
     let i = 0;
 
-    const interval = setInterval(() => {
+    const efeito = setInterval(() => {
 
-      element.textContent += text.charAt(i);
+      elemento.textContent += texto.charAt(i);
+
       i++;
 
-      if (i >= text.length) {
-        clearInterval(interval);
+      if(i >= texto.length){
+        clearInterval(efeito);
       }
 
     }, 35);
 
   }, delay);
+
 }
 
-typeLine("line1", lines[0], 300);
-typeLine("line2", lines[1], 1200);
-typeLine("line3", lines[2], 2200);
-typeLine("line4", lines[3], 3200);
+escreverLinha("line1", mensagens[0], 300);
+escreverLinha("line2", mensagens[1], 1200);
+escreverLinha("line3", mensagens[2], 2200);
+escreverLinha("line4", mensagens[3], 3200);
 
-let progress = 0;
+let progresso = 0;
 
-const loading = setInterval(() => {
+const carregamento = setInterval(() => {
 
-  progress += 4;
+  progresso += 4;
 
-  progressBar.style.width = progress + "%";
+  progressBar.style.width = progresso + "%";
 
-  if (progress >= 100) {
+  if(progresso >= 100){
 
-    clearInterval(loading);
+    clearInterval(carregamento);
 
     setTimeout(() => {
 
       bootScreen.style.opacity = "0";
-      bootScreen.style.transition = "0.8s";
+      bootScreen.style.transition = "1s";
 
       setTimeout(() => {
 
         bootScreen.style.display = "none";
         mainSite.style.display = "block";
 
-        startCounter();
+        iniciarContadores();
 
-      }, 800);
+      }, 1000);
 
     }, 500);
   }
 
 }, 120);
 
-// =======================
+// ======================
 // CONTADOR HERO
-// =======================
+// ======================
 
-function startCounter() {
+function iniciarContadores(){
 
-  const counter = document.getElementById("counter");
+  const contador = document.getElementById("counter");
 
-  if (!counter) return;
+  if(!contador) return;
 
-  let value = 0;
+  let valor = 0;
 
-  const interval = setInterval(() => {
+  const intervalo = setInterval(() => {
 
-    value += 7;
+    valor += 7;
 
-    counter.textContent = value;
+    contador.textContent = valor;
 
-    if (value >= 427) {
+    if(valor >= 427){
 
-      counter.textContent = "427+";
+      contador.textContent = "427+";
 
-      clearInterval(interval);
+      clearInterval(intervalo);
     }
 
-  }, 30);
+  }, 25);
 }
 
-// =======================
+// ======================
 // PARTICULAS
-// =======================
+// ======================
 
 const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
 
-let particles = [];
+if(canvas){
 
-function resizeCanvas() {
+  const ctx = canvas.getContext("2d");
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
+  let particulas = [];
 
-resizeCanvas();
+  function redimensionar(){
 
-class Particle {
-
-  constructor() {
-
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-
-    this.size = Math.random() * 2 + 0.5;
-
-    this.speedX = Math.random() * 0.6 - 0.3;
-    this.speedY = Math.random() * 0.6 - 0.3;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
   }
 
-  update() {
+  redimensionar();
 
-    this.x += this.speedX;
-    this.y += this.speedY;
+  class Particula{
 
-    if (this.x < 0 || this.x > canvas.width)
-      this.speedX *= -1;
+    constructor(){
 
-    if (this.y < 0 || this.y > canvas.height)
-      this.speedY *= -1;
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+
+      this.raio = Math.random() * 2 + 1;
+
+      this.vx = Math.random() * 0.6 - 0.3;
+      this.vy = Math.random() * 0.6 - 0.3;
+    }
+
+    mover(){
+
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if(this.x < 0 || this.x > canvas.width)
+        this.vx *= -1;
+
+      if(this.y < 0 || this.y > canvas.height)
+        this.vy *= -1;
+    }
+
+    desenhar(){
+
+      ctx.beginPath();
+
+      ctx.arc(
+        this.x,
+        this.y,
+        this.raio,
+        0,
+        Math.PI * 2
+      );
+
+      ctx.fillStyle = "rgba(0,229,255,.8)";
+      ctx.fill();
+    }
+
   }
 
-  draw() {
+  function criarParticulas(){
 
-    ctx.beginPath();
+    particulas = [];
 
-    ctx.arc(
-      this.x,
-      this.y,
-      this.size,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle = "rgba(0,229,255,.8)";
-    ctx.fill();
-  }
-}
-
-function createParticles() {
-
-  particles = [];
-
-  const quantity =
-    window.innerWidth < 768
+    const quantidade =
+      window.innerWidth < 768
       ? 35
       : 90;
 
-  for (let i = 0; i < quantity; i++) {
+    for(let i=0;i<quantidade;i++){
 
-    particles.push(
-      new Particle()
-    );
+      particulas.push(
+        new Particula()
+      );
+    }
   }
-}
 
-function connectParticles() {
+  function conectar(){
 
-  for (let a = 0; a < particles.length; a++) {
+    for(let a=0;a<particulas.length;a++){
 
-    for (let b = a; b < particles.length; b++) {
+      for(let b=a;b<particulas.length;b++){
 
-      const dx =
-        particles[a].x -
-        particles[b].x;
+        const dx =
+          particulas[a].x -
+          particulas[b].x;
 
-      const dy =
-        particles[a].y -
-        particles[b].y;
+        const dy =
+          particulas[a].y -
+          particulas[b].y;
 
-      const distance =
-        Math.sqrt(dx * dx + dy * dy);
+        const distancia =
+          Math.sqrt(dx*dx + dy*dy);
 
-      if (distance < 120) {
+        if(distancia < 120){
 
-        ctx.strokeStyle =
-          `rgba(255,0,60,${
-            1 - distance / 120
-          })`;
+          ctx.strokeStyle =
+            `rgba(255,0,60,${
+              1 - distancia / 120
+            })`;
 
-        ctx.lineWidth = 0.4;
+          ctx.lineWidth = 0.4;
 
-        ctx.beginPath();
+          ctx.beginPath();
 
-        ctx.moveTo(
-          particles[a].x,
-          particles[a].y
-        );
+          ctx.moveTo(
+            particulas[a].x,
+            particulas[a].y
+          );
 
-        ctx.lineTo(
-          particles[b].x,
-          particles[b].y
-        );
+          ctx.lineTo(
+            particulas[b].x,
+            particulas[b].y
+          );
 
-        ctx.stroke();
+          ctx.stroke();
+        }
       }
     }
   }
-}
 
-function animateParticles() {
+  function animar(){
 
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
+    ctx.clearRect(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
 
-  particles.forEach(particle => {
+    particulas.forEach(p => {
 
-    particle.update();
-    particle.draw();
-  });
+      p.mover();
+      p.desenhar();
 
-  connectParticles();
+    });
 
-  requestAnimationFrame(
-    animateParticles
-  );
-}
+    conectar();
 
-createParticles();
-animateParticles();
-
-window.addEventListener(
-  "resize",
-  () => {
-
-    resizeCanvas();
-    createParticles();
+    requestAnimationFrame(animar);
   }
+
+  criarParticulas();
+  animar();
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      redimensionar();
+      criarParticulas();
+    }
+  );
+}
+
+// ======================
+// ANIMAÇÃO SCROLL
+// ======================
+
+const elementos = document.querySelectorAll(
+  ".project-card, .step, .stat-card, .contact-box"
 );
 
-// =======================
-// SCROLL REVEAL
-// =======================
-
-const revealElements =
-  document.querySelectorAll(
-    ".scan-box, .project-card, .diagnostic-box, .contact-box"
-  );
-
-function revealOnScroll() {
-
-  revealElements.forEach(el => {
-
-    const top =
-      el.getBoundingClientRect().top;
-
-    if (
-      top <
-      window.innerHeight - 100
-    ) {
-
-      el.style.opacity = "1";
-      el.style.transform =
-        "translateY(0)";
-    }
-  });
-}
-
-revealElements.forEach(el => {
+elementos.forEach(el => {
 
   el.style.opacity = "0";
-  el.style.transform =
-    "translateY(40px)";
+  el.style.transform = "translateY(40px)";
+  el.style.transition = "all .8s ease";
 
-  el.style.transition =
-    "all .8s ease";
 });
+
+function revelar(){
+
+  elementos.forEach(el => {
+
+    const topo =
+      el.getBoundingClientRect().top;
+
+    if(
+      topo <
+      window.innerHeight - 100
+    ){
+
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+    }
+
+  });
+
+}
 
 window.addEventListener(
   "scroll",
-  revealOnScroll
+  revelar
 );
 
-revealOnScroll();
+revelar();
 
-// =======================
-// DIAGNÓSTICO FLOWDATA
-// =======================
-
-function analisarSegmento() {
-
-  const segmento =
-    document
-      .getElementById("segmento")
-      .value
-      .trim();
-
-  const resultado =
-    document.getElementById(
-      "resultado"
-    );
-
-  if (segmento === "") {
-
-    resultado.innerHTML =
-      "Digite um segmento para iniciar a análise.";
-
-    return;
-  }
-
-  resultado.innerHTML = `
-    <strong>
-      ANÁLISE FLOWDATA:
-      ${segmento.toUpperCase()}
-    </strong>
-
-    <br><br>
-
-    ✓ Landing page de alta conversão<br>
-    ✓ Integração WhatsApp<br>
-    ✓ Google Meu Negócio otimizado<br>
-    ✓ Automação de atendimento<br>
-    ✓ Dashboard de indicadores<br>
-    ✓ Captação de leads automatizada
-  `;
-}
-
-// =======================
-// EFEITO DE MOUSE
-// =======================
+// ======================
+// EFEITO MOUSE
+// ======================
 
 document.addEventListener(
   "mousemove",
   e => {
 
-    if (window.innerWidth < 768)
+    if(window.innerWidth < 768)
       return;
 
     const x =
@@ -360,34 +324,32 @@ document.addEventListener(
     document.body.style.background =
       `
       radial-gradient(
-      circle at ${x * 100}% ${y * 100}%,
-      rgba(255,0,60,.12),
-      transparent 25%
+        circle at ${x*100}% ${y*100}%,
+        rgba(255,0,60,.10),
+        transparent 25%
       ),
       #030305
       `;
   }
 );
 
-// =======================
+// ======================
 // PARALLAX HERO
-// =======================
+// ======================
 
 window.addEventListener(
   "scroll",
   () => {
 
     const hero =
-      document.querySelector(
-        ".hero"
-      );
+      document.querySelector(".hero");
 
-    if (!hero) return;
+    if(!hero) return;
 
-    const offset =
-      window.scrollY * 0.15;
+    const deslocamento =
+      window.scrollY * 0.12;
 
     hero.style.transform =
-      `translateY(${offset}px)`;
+      `translateY(${deslocamento}px)`;
   }
 );
