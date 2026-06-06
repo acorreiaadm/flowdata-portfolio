@@ -1,106 +1,118 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlowData | Soluções Digitais</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowData | Portfólio Digital</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-    <div class="container">
-        <h1>FlowData</h1>
-        <nav>
-            <a href="#sobre">Sobre</a>
-            <a href="#servicos">Serviços</a>
-            <a href="#portfolio">Portfólio</a>
-            <a href="#contato">Contato</a>
-        </nav>
+  <canvas id="particles"></canvas>
+
+  <header>
+    <h1>FlowData<span>.</span></h1>
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section id="inicio" class="hero">
+    <div class="hero-text">
+      <p class="tag">Tecnologia • Dados • Presença Digital</p>
+      <h2>Sites que não apenas aparecem. <span>Eles vendem.</span></h2>
+      <p class="descricao">
+        Criamos experiências digitais modernas, interativas e estratégicas para empresas que querem se destacar.
+      </p>
+
+      <div class="botoes">
+        <a href="#portfolio" class="btn principal">Ver Projetos</a>
+        <a href="#contato" class="btn secundario">Falar com a FlowData</a>
+      </div>
     </div>
-</header>
 
-<section class="hero">
-    <div class="hero-content">
-        <h2>Transformamos empresas com <span>tecnologia, dados e presença digital.</span></h2>
-        <p>Sites profissionais, landing pages, automação de processos e análise de dados para impulsionar sua empresa.</p>
-        <a href="https://wa.me/55SEUNUMERO" class="btn">Falar no WhatsApp</a>
+    <div class="painel">
+      <div class="linha"></div>
+      <h3>FlowData System</h3>
+      <p>Status: Online</p>
+      <p>Leads captados: <span id="contador">0</span></p>
+      <p>Conversão digital: 87%</p>
     </div>
-</section>
+  </section>
 
-<section id="sobre">
-    <div class="container">
-        <h2>Sobre a FlowData</h2>
-        <p>
-            A FlowData é uma consultoria digital focada em ajudar empresas a crescer através de soluções tecnológicas modernas, automação e presença digital profissional.
-        </p>
+  <section id="servicos">
+    <h2>Serviços Inteligentes</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Sites Profissionais</h3>
+        <p>Sites modernos, responsivos e pensados para gerar confiança.</p>
+      </div>
+
+      <div class="card">
+        <h3>Landing Pages</h3>
+        <p>Páginas focadas em conversão, campanhas e captação de clientes.</p>
+      </div>
+
+      <div class="card">
+        <h3>Automação</h3>
+        <p>Processos digitais para economizar tempo e organizar empresas.</p>
+      </div>
+
+      <div class="card">
+        <h3>Dashboards</h3>
+        <p>Indicadores visuais para decisões mais rápidas e inteligentes.</p>
+      </div>
     </div>
-</section>
+  </section>
 
-<section id="servicos">
-    <div class="container">
-        <h2>Nossos Serviços</h2>
+  <section id="portfolio">
+    <h2>Projetos em Destaque</h2>
 
-        <div class="cards">
-            <div class="card">
-                <h3>Criação de Sites</h3>
-                <p>Sites modernos, rápidos e responsivos.</p>
-            </div>
+    <div class="projetos">
+      <div class="projeto">
+        <span>01</span>
+        <h3>Advocacia Prime</h3>
+        <p>Site jurídico premium com foco em confiança e autoridade.</p>
+      </div>
 
-            <div class="card">
-                <h3>Landing Pages</h3>
-                <p>Páginas focadas em conversão de clientes.</p>
-            </div>
+      <div class="projeto">
+        <span>02</span>
+        <h3>Instituto Vitae</h3>
+        <p>Presença digital para área da saúde e atendimento humanizado.</p>
+      </div>
 
-            <div class="card">
-                <h3>Automação</h3>
-                <p>Processos automatizados para aumentar produtividade.</p>
-            </div>
-
-            <div class="card">
-                <h3>Dashboards</h3>
-                <p>Indicadores e relatórios para tomada de decisão.</p>
-            </div>
-        </div>
+      <div class="projeto">
+        <span>03</span>
+        <h3>Prime Imóveis</h3>
+        <p>Landing page imobiliária para captação de interessados.</p>
+      </div>
     </div>
-</section>
+  </section>
 
-<section id="portfolio">
-    <div class="container">
-        <h2>Projetos Desenvolvidos</h2>
+  <section id="contato">
+    <h2>Vamos criar algo diferente?</h2>
+    <p>Preencha abaixo e veja a interação acontecer.</p>
 
-        <div class="cards">
-            <div class="card">
-                <h3>Advocacia Prime</h3>
-                <p>Site institucional para escritório jurídico.</p>
-            </div>
+    <form id="formulario">
+      <input type="text" id="nome" placeholder="Seu nome" required />
+      <input type="text" placeholder="Nome da empresa" />
+      <textarea placeholder="O que você gostaria de criar?"></textarea>
+      <button type="submit">Enviar Interesse</button>
+    </form>
 
-            <div class="card">
-                <h3>Instituto Vitae</h3>
-                <p>Presença digital para área da saúde.</p>
-            </div>
+    <p id="mensagem"></p>
+  </section>
 
-            <div class="card">
-                <h3>Prime Imóveis</h3>
-                <p>Landing page para captação de clientes imobiliários.</p>
-            </div>
-        </div>
-    </div>
-</section>
+  <a class="whatsapp" href="https://wa.me/55SEUNUMERO" target="_blank">💬</a>
 
-<section id="contato">
-    <div class="container">
-        <h2>Contato</h2>
-        <p>Entre em contato e descubra como a tecnologia pode acelerar o crescimento do seu negócio.</p>
+  <footer>
+    <p>© 2026 FlowData — Tecnologia que movimenta negócios.</p>
+  </footer>
 
-        <a href="https://wa.me/55SEUNUMERO" class="btn">Solicitar Orçamento</a>
-    </div>
-</section>
-
-<footer>
-    <p>© 2026 FlowData - Todos os direitos reservados.</p>
-</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
